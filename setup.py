@@ -6,6 +6,10 @@ setup(
     version="0.0.1",
     packages=find_packages(exclude=("dev")),
     include_package_data=True,
+    description="Click CLI application to help with NETCONF development experience",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/BSpendlove/netconf-tool",
     install_requires=[
         "ncclient>=0.6.13",
         "loguru>=0.7.0",
