@@ -35,7 +35,7 @@ $ netconf-tool create-subscription --host 192.0.2.1
   <eventTime>2023-04-28T22:12:22Z</eventTime>
   <netconf-config-change xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-notifications">
     <changed-by>
-      <username>poem</username>
+      <username>netconftool</username>
       <session-id>0</session-id>
     </changed-by>
     <datastore>running</datastore>
