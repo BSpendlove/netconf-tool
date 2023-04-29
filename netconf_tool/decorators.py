@@ -3,7 +3,28 @@ import functools
 from ncclient.devices import supported_devices_cfg
 
 
-def netconf_common_options(f):
+def common_format_options(f):
+    @click.option(
+        "--format-json",
+        help="If any of the available --export arguments are not used, it will print out the NETCONF payload using xmltodict (JSON)",
+        is_flag=True,
+    )
+    @click.option(
+        "--export-xml",
+        help="The configuration gathered via NETCONF will be created with a filename path of this argument and exported using XML",
+    )
+    @click.option(
+        "--export-json",
+        help="The configuration gathered via NETCONF will be created with a filename path of this argument and exported using xmltodict (JSON)",
+    )
+    @functools.wraps(f)
+    def wrapper_common_options(*args, **kwargs):
+        return f(*args, **kwargs)
+
+    return wrapper_common_options
+
+
+def common_netconf_options(f):
     @click.option(
         "--host",
         help="IP Address of NETCONF Server to connect to",
