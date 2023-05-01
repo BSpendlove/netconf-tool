@@ -27,6 +27,7 @@ from netconf_tool.decorators import common_format_options, common_netconf_option
 def cli_operations_get_config(
     host: str,
     port: int,
+    timeout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -51,6 +52,7 @@ def cli_operations_get_config(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},

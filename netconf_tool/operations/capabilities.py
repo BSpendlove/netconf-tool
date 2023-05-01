@@ -19,6 +19,7 @@ from netconf_tool.helpers import parse_rfc3986_uri
 def netconf_tool_cli_operations_list_server_capabilities(
     host: str,
     port: int,
+    timout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -31,6 +32,7 @@ def netconf_tool_cli_operations_list_server_capabilities(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},

@@ -20,6 +20,7 @@ from netconf_tool.helpers import parse_rfc3986_uri
 def cli_operations_get_yang_models(
     host: str,
     port: int,
+    timeout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -39,6 +40,7 @@ def cli_operations_get_yang_models(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},
@@ -93,6 +95,7 @@ def cli_operations_get_yang_models(
 def cli_operations_get_yang_model(
     host: str,
     port: int,
+    timeout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -112,6 +115,7 @@ def cli_operations_get_yang_model(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},

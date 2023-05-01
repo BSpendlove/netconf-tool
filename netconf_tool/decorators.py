@@ -40,6 +40,9 @@ def common_netconf_options(f):
         required=True,
     )
     @click.option(
+        "--timeout", help="SSH socket connection timeout", type=int, default=10
+    )
+    @click.option(
         "--username",
         help="Username to authenticate to NETCONF Server",
         envvar="NETCONF_TOOL_USERNAME",
