@@ -18,7 +18,9 @@ from netconf_tool.helpers import parse_rfc3986_uri
     type=str,
     default="./yang_models",
 )
-@click.option("--regex", help="Only match modules with this regex pattern", type=str)
+@click.option(
+    "--regex", help="Only match modules with this regex pattern", type=str, default=""
+)
 def cli_operations_get_yang_models(
     host: str,
     port: int,
