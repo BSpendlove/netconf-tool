@@ -1,4 +1,5 @@
 import click
+import re
 from ncclient import manager
 from ncclient.transport.errors import SSHError, AuthenticationError
 from loguru import logger
@@ -17,6 +18,9 @@ from netconf_tool.helpers import parse_rfc3986_uri
     type=str,
     default="./yang_models",
 )
+@click.option(
+    "--regex", help="Only match modules with this regex pattern", type=str, default=""
+)
 def cli_operations_get_yang_models(
     host: str,
     port: int,
@@ -26,6 +30,7 @@ def cli_operations_get_yang_models(
     device_handler: str,
     hostkey_verify: bool,
     output_dir: str,
+    regex: str,
 ):
     """Gathers all YANG Models present on the device and writes it to the output directory"""
     output_directory = Path(output_dir)
@@ -33,6 +38,11 @@ def cli_operations_get_yang_models(
         logger.info("Creating output directory and any child folders")
         output_directory.mkdir(parents=True)
 
+    regex_pattern = re.compile(regex)
+    if regex:
+        logger.info(
+            f"Regex pattern detected, will use '{regex_pattern.pattern}' to match YANG modules"
+        )
     yang_modules = []
     n = 0
     logger.info(f"Attempting to establish NETCONF session to {host}:{port}")
@@ -57,6 +67,10 @@ def cli_operations_get_yang_models(
                 ):
                     continue
                 module_name = capability["queries"]["module"]
+                if regex:
+                    if not re.match(regex_pattern, module_name):
+                        continue
+
                 schema = m.get_schema(module_name)
                 file_path = output_directory.joinpath(f"{module_name}.yang")
                 with file_path.open("w") as out_file:
