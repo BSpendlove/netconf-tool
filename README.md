@@ -170,3 +170,36 @@ netconf-tool yangcli get-config --host 192.0.2.1 "network-instances@http://openc
    </network-instances> 
  </data>
 ```
+
+### netconf-tool operations get-yang-models
+
+Gathers all YANG models present on the NETCONF server and saves them by default to `./yang_models`
+
+```
+$ netconf-tool operations get-yang-models --host 192.0.2.1
+2023-05-01 08:34:24.603 | INFO     | netconf_tool.operations.get_yang:cli_operations_get_yang_models:36 - Attempting to establish NETCONF session to 192.0.2.1:830
+2023-05-01 08:34:24.965 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:46 - Established NETCONF connection to 192.0.2.1:830 (Session ID: 164)
+2023-05-01 08:34:49.831 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module nc-notifications (yang_models/nc-notifications.yang)
+2023-05-01 08:34:49.938 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module notifications (yang_models/notifications.yang)
+2023-05-01 08:34:50.046 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-aaa (yang_models/openconfig-aaa.yang)
+2023-05-01 08:34:50.154 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-aaa-types (yang_models/openconfig-aaa-types.yang)
+2023-05-01 08:34:50.262 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-acl (yang_models/openconfig-acl.yang)
+2023-05-01 08:34:50.369 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-aft (yang_models/openconfig-aft.yang)
+2023-05-01 08:34:50.476 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-aft-types (yang_models/openconfig-aft-types.yang)
+2023-05-01 08:34:50.583 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-alarm-types (yang_models/openconfig-alarm-types.yang)
+2023-05-01 08:34:50.690 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:62 - Exported module openconfig-alarms (yang_models/openconfig-alarms.yang)
+............. and so on .............
+2023-05-01 08:37:21.411 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_models:76 - Exported a total of 280 YANG models
+```
+
+### netconf-tool operations get-yang-model
+
+Gathers a specific YANG model if it exist on the NETCONF server and saves it by default to `./yang_models`
+
+```
+$ netconf-tool operations get-yang-model --host 192.0.2.1 --name openconfig-segment-routing
+2023-05-01 08:31:21.036 | INFO     | netconf_tool.operations.get_yang:cli_operations_get_yang_model:96 - Creating output directory and any child folders
+2023-05-01 08:31:21.036 | INFO     | netconf_tool.operations.get_yang:cli_operations_get_yang_model:100 - Attempting to establish NETCONF session to 192.0.2.1:830
+2023-05-01 08:31:21.398 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_model:110 - Established NETCONF connection to 192.0.2.1:830 (Session ID: 162)
+2023-05-01 08:31:21.508 | SUCCESS  | netconf_tool.operations.get_yang:cli_operations_get_yang_model:134 - Exported module openconfig-segment-routing (yang_models/openconfig-segment-routing.yang)
+```

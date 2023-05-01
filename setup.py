@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="netconf_tool",
-    version="0.0.2",
+    version="0.0.3",
     packages=find_packages(exclude=("dev")),
     include_package_data=True,
     description="Click CLI application to help with NETCONF development experience",
