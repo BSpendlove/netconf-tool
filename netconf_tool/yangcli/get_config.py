@@ -23,6 +23,7 @@ from netconf_tool.helpers import build_xml_from_cli_commands
 def netconf_tool_cli_yangcli_get_config(
     host: str,
     port: int,
+    timeout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -46,6 +47,7 @@ def netconf_tool_cli_yangcli_get_config(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},

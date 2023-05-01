@@ -10,6 +10,7 @@ from netconf_tool.decorators import common_netconf_options
 def cli_subscription_local(
     host: str,
     port: int,
+    timeout: int,
     username: str,
     password: str,
     device_handler: str,
@@ -21,6 +22,7 @@ def cli_subscription_local(
         with manager.connect(
             host=host,
             port=port,
+            timeout=timeout,
             username=username,
             password=password,
             device_params={"name": device_handler},
